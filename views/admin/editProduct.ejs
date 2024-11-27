@@ -1,0 +1,73 @@
+<%- include('../includes/header') %>
+
+  
+    <%- include('../includes/navbar') %>
+    <h1 style="text-align: center;margin: 20px;">Edit Product</h1>
+  <div style="display: flex;justify-content: center;">
+  
+
+    <form style="width: 500px; display: flex; flex-direction: column; gap: 12px;" >
+       
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name:</label>
+              <input type="text" class="form-control" value="<%= product.name  %>" id="name" aria-describedby="emailHelp" required >
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Price:</label>
+                <input type="text" class="form-control" id="price" value="<%= product.price  %>" aria-describedby="emailHelp"  required>
+              </div>
+              <div class="form-group">
+            <label for="exampleInputEmail1">Description:</label>
+              <textarea name="" id="description" style="width: 500px;height: 150px;"  required><%= product.description  %></textarea>
+              </div>
+
+              <div class="form-group" style="display: none;">
+                <label for="exampleInputEmail1">Old Image Url:</label>
+                <input type="text" class="form-control" id="oldImage" value="<%= product.image  %>" aria-describedby="emailHelp"  required>
+              </div>
+              <div class="form-group" style="display:none;">
+                <label for="exampleInputEmail1">Image Id:</label>
+                <input type="text" class="form-control" id="id" value="<%= product._id  %>" aria-describedby="emailHelp"  required>
+              </div>
+
+              <div class="form-group">
+                <input type="file" class="form-control-file" id="file"  name="product" >
+              </div>
+        
+              <button id="btn" style="background-color: #00ffff;font-size: 16px; font-weight: bold; padding: 6px;   "  onmouseover="this.style.backgroundColor='#57e9e9';" 
+              onmouseout="this.style.backgroundColor='#00ffff';">Add</button>
+              <p id="err"></p>
+    </form>
+  </div>
+  <script>
+        const name=document.getElementById('name');
+        const price=document.getElementById('price');
+        const description=document.getElementById('description');
+        const file=document.getElementById('file');
+        const btn=document.getElementById('btn');
+        const oldImage=document.getElementById('oldImage');
+        const err=document.getElementById('err');
+        const id=document.getElementById('id');
+        btn.addEventListener("click",async(e)=>{
+         
+            e.preventDefault()
+            const formData=new FormData();
+            formData.append('name',name.value);
+            formData.append('price',price.value);
+            formData.append('description',description.value);
+            formData.append('oldImage',oldImage.value);
+            formData.append('file',file.files[0]);
+            console.log(formData);
+            const res=await fetch(`/edit/${id.value}`,{
+                method:'POST',
+                body:formData
+            })
+            if(!res.ok){
+              err.innerText="Something went wrong"
+              return;
+            }
+            window.location.href=res.url;
+        })
+  </script>
+</body>
+</html>

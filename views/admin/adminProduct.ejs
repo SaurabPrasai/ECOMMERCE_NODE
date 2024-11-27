@@ -1,0 +1,41 @@
+<%- include('../includes/header') %>
+
+  
+    <%- include('../includes/navbar') %>
+    
+ <div style="display: flex; flex-wrap: wrap; justify-content: space-around;align-items: center; margin-top: 30px;">
+    <%if(products.length>0){%> <% products.map((product)=>{ %>
+        <div class="card" style="width: 20rem">
+          <img
+            class="card-img-top"
+            src=<%= product.image  %>
+            alt="Card image cap"
+            height="200"
+          />
+          <div>
+            
+              <div style="display: flex;justify-content: space-between; padding: 0 20px; margin-top: 4px;">
+                <p style="font-weight: bold; font-size: 20px;"><%= product.name  %></p>
+              <p style="font-weight: bold; font-size: 20px;">Rs.<%= product.price  %></p>
+              </div>
+      
+           
+      
+            <div style="display: flex;justify-content: space-between; padding: 0 20px; margin-bottom: 4px; gap: 10px;">
+           
+              <a href="/edit/<%= product._id  %>" class="btn " style="background-color: aqua; width: 100%;">Edit</a>
+              <a href="/delete/<%= product._id  %>" class="btn " style="background-color: aqua; width: 100%;">Delete</a>
+
+      
+            </div>
+          </div>
+        </div>
+        <% }) }%>
+
+        <% if(products.length===0){%>
+          <h1>No Products</h1>
+
+        <%}  %>
+ </div>
+</body>
+</html>

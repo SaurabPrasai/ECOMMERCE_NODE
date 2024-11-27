@@ -1,0 +1,27 @@
+<%- include('includes/header') %> <%- include('includes/navbar') %>
+
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    min-height: 80vh;
+  "
+>
+  <div >
+    <img src=<%= product.image%> style="height: 300px;width: 400px;
+    border-radius:10px" alt="">
+  </div>
+  <div >
+    <p style="width: 500px; font-size: 18px"><%= product.description %></p>
+    <p style="font-size: 20px; font-weight: bold"><%= product.name %></p>
+
+    <p style="font-size: 20px; font-weight: bold">Rs.<%= product.price %></p>
+    <% if(user) {%>
+        <a href="/add-to-cart/<%= product._id  %>"class="btn " style="background-color: aqua;">Add to Cart</a>
+    <% } %>
+  </div>
+</div>
+
+<%- include('includes/footer') %>

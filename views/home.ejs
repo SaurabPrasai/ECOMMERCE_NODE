@@ -1,0 +1,91 @@
+<%- include('includes/header') %> <%- include('includes/navbar') %>
+
+<div
+  style="
+    height: 70vh;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <div style="display: flex; justify-content: center; align-items: center">
+    <h1>Bringing the Best to Your Doorstep</h1>
+    <img src="https://svgsilh.com/svg/151685.svg" height="200" alt="" />
+  </div>
+</div>
+
+<div style="min-height: 50vh;">
+  <h1 style="margin: 20px 10px">Products</h1>
+
+<div
+  style="
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px 0px;
+   
+  "
+>
+  <%if(products?.length>0 && user){%> <% products.map((product)=>{ %>
+  <div class="card" style="width: 20rem">
+    <img
+      class="card-img-top"
+      src=<%= product.image  %>
+      alt="Card image cap"
+      height="200"
+    />
+    <div>
+      
+        <div style="display: flex;justify-content: space-between; padding: 0 20px; margin-top: 4px;">
+          <p style="font-weight: bold; font-size: 20px;"><%= product.name  %></p>
+        <p style="font-weight: bold; font-size: 20px;">Rs.<%= product.price  %></p>
+        </div>
+
+     
+
+      <div style="display: flex;justify-content: space-between; padding: 0 20px; margin-bottom: 4px;">
+        <a href="/product/<%= product._id  %>" class="btn " style="background-color: aqua;">See Details</a>
+        <a href="/add-to-cart/<%= product._id  %>" class="btn" style="background-color: aqua;"  >Add to Cart</a>
+
+      </div>
+    </div>
+  </div>
+  <% }) %> <%}else{%>
+    <% products.map((product)=>{ %>
+      <div class="card" style="width: 20rem">
+        <img
+          class="card-img-top"
+          src=<%= product.image  %>
+          alt="Card image cap"
+          height="200"
+        />
+        <div>
+          
+            <div style="display: flex;justify-content: space-between; padding: 0 20px; margin-top: 4px;">
+              <p style="font-weight: bold; font-size: 20px;"><%= product.name  %></p>
+            <p style="font-weight: bold; font-size: 20px;">Rs.<%= product.price  %></p>
+            </div>
+    
+         
+    
+          <div style="display: flex;justify-content: space-between; padding: 0 20px; margin-bottom: 4px;">
+            <a href="/product/<%= product._id  %>" class="btn " style="background-color: aqua;">See Details</a>
+           
+    
+          </div>
+        </div>
+      </div>
+      <% }) %>
+  <% } %>
+</div>
+
+</div>
+
+<script>
+  const btn = document.querySelector(".btn");
+
+</script>
+
+<%- include('includes/footer') %>

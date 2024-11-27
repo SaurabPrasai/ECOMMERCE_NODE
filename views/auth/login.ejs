@@ -1,0 +1,75 @@
+<%- include('../includes/header') %> <%- include('../includes/navbar') %>
+
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    min-height: 80vh;
+
+  "
+>
+<h1 style="text-align: center; margin-top: 10px">Login</h1>
+  <form style="width: 500px">
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Email address</label>
+      <input type="email" id="email" class="form-control" />
+    </div>
+
+    <!-- Password input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Password</label>
+
+      <input type="password" id="password" class="form-control" />
+    </div>
+
+    <!-- Submit button -->
+    <button
+      type="button"
+      data-mdb-button-init
+      data-mdb-ripple-init
+      class="btn btn-primary btn-block mb-4"
+    >
+      Login
+    </button>
+    <p id="err"></p>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="/signup">Register</a></p>
+    </div>
+  </form>
+</div>
+<script>
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+  const btn = document.querySelector(".btn");
+  const err = document.getElementById("err");
+
+  btn.addEventListener("click", async () => {
+    if (email.value === "" || password.value === "") {
+      err.innerText = "Please fill all the fields";
+      return;
+    }
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+      }),
+    });
+    // const data = await res.json();
+    if (!res.ok) {
+      err.innerText = data.message;
+      return;
+    }
+ window.location.href = res.url;
+  });
+</script>
+<%- include('../includes/footer') %>

@@ -1,0 +1,30 @@
+<%- include('includes/header') %> <%- include('includes/navbar') %>
+  <div style="min-height: 80vh;">
+   <% if(cart.length){%>
+    <h1 style="text-align: center;margin: 20px;">Cart Items</h1> 
+  <%  }else{ %>
+    <h1 style="text-align: center;margin: 20px;">No Items in Cart</h1> 
+
+    <% } %>
+   <div style="display: flex;justify-content: center;align-items: center; flex-direction: column;gap: 10px;">
+    <% if(cart.length){%>
+            <% cart.map((item)=>{%>
+                  <div style="width: 50%; padding: 6px; border: 1px solid black;display: flex;justify-content: space-between; align-items: center; background-color: aqua; border-radius: 8px;">
+                    <img src="<%= item.image  %>" style="height: 80px; width: 100px; border-radius: 10px; " alt="">
+                    <p style="font-size: 18px; margin-top: 15px;">Quantity:<%= item.quantity  %></p>
+                    <p style="font-size: 18px;margin-top: 15px;">Rs.<%= item.price  %></p>
+                        <p style="font-size: 18px;font-weight: bold;margin-top: 15px;"><%= item.name  %></p>
+                    <a href="/delete-cart/<%= item.id  %>" class="btn">Delete</a>
+                   
+                  </div>
+          <%  }) %>
+          <div style="display: flex; gap: 20px; align-items: center; width: 50%; justify-content: space-around;">
+            <p style="font-size: 20px;font-weight: bold; margin-top: 15px;">TotalPrice: Rs.<%= totalPrice  %></p>
+            <a href="/order" style="border: 1px solid black; color:black; font-weight: bold; background-color: aqua;font-size: 18px; text-decoration: none;padding: 8px; width: 20%;text-align: center; border-radius:8px ;">Order</a>
+          </div>
+      <%} %>
+     
+   </div>
+  
+  </div>
+    <%- include('includes/footer') %>

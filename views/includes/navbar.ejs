@@ -1,0 +1,32 @@
+<body>
+<nav class="navbar" style="background-color: aqua;">
+    <div class="container-fluid">
+      <a class="navbar-brand  " href="/" style="font-weight: bold; letter-spacing: 2px; font-size: 24px; ">SAURHUB</a>
+        <ul class="nav ">
+         
+            <% if(user){ %>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/add-product" style="font-weight: bold;">Add Product</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link text-black" href="/login" style="font-weight: bold;">Admin Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="/cart" style="font-weight: bold;">Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/logout" style="font-weight: bold;">Logout</a>
+                                </li>
+          <%  }else{ %>
+            <li class="nav-item">
+                <a class="nav-link text-black" style="font-weight: bold;" href="/signup">Signup</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-black " style="font-weight: bold;"  href="/login">Login</a>
+                </li>
+
+          <%  }%>
+          
+    </div>
+  </nav>
