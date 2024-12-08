@@ -8,13 +8,15 @@
     gap: 30px;
     min-height: 80vh;
   "
+  class="d-flex flex-column flex-sm-row  "
 >
-  <div >
+  <div  style="padding: 10px;" >
     <img src=<%= product.image%> style="height: 300px;width: 400px;
     border-radius:10px" alt="">
+    
   </div>
-  <div >
-    <p style="width: 500px; font-size: 18px"><%= product.description %></p>
+  <div  style="padding-left:50px;">
+    <p style="width: 400px; font-size: 18px;" ><%= product.description %></p>
     <p style="font-size: 20px; font-weight: bold"><%= product.name %></p>
 
     <p style="font-size: 20px; font-weight: bold">Rs.<%= product.price %></p>
